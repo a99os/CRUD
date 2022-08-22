@@ -59,12 +59,16 @@ class User():
 
 
     def signIn(self):
-        a = input("[1] Shahsiy sahifaga kirish\n[2] Ro'yhatdan o'tish\nAmalni tartib raqamini kiritishingiz mumkin!\n\n: ")
+        login = input("Input login: ")
+        parol = input("Input parol: ")
         
-        if a == '1' or a == 'Shahsiy sahifaga kirish':
-            b.checkLogin()
-        elif a == '2' or a == "Ro'yhatdan o'tish":
-            b.register()
+        cur.execute(f"SELECT * from Users WHERE '{login}'=login and '{parol}'=parol")
+        data=cur.fetchall()
+        if not len(data):
+            print("Tizimda borsiz")
+        else:
+            print("Tizimda yo'qsiz")
+        
             
 
     #login bormi yo'qmi
