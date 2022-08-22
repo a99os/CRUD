@@ -3,6 +3,8 @@ import psycopg2
 import os
 import time
 
+conn=psycopg2.connect(host="localhost",database='mydb',user="Abbos",password='1')
+cur=conn.cursor()
 
 class User():
     def __init__(self, name, surname, age, telnumber, jinsi, login, parol):
@@ -14,8 +16,7 @@ class User():
         self.login = login
         self.parol = parol
         
-    def connection(self):
-        pass
+       
 
     def register(self):
         print("Ro'yhatdan o'tish uchun sorovnomani to'ldiring!\n")
