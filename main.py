@@ -15,6 +15,19 @@ class User():
         self.jinsi = jinsi
         self.login = login
         self.parol = parol
+
+    def createTable():
+        cur.execute(f"""CREATE TABLE Users (id SERIAL PRIMARY KEY,
+        name VARCHAR(30), 
+        surname VARCHAR(30), 
+        age int, 
+        telnumber VARCHAR(17), 
+        jinsi VARCHAR(8), 
+        login VARCHAR(30), 
+        parol VARCHAR(30));""")
+
+        conn.commit()
+
         
        
 
@@ -23,9 +36,9 @@ class User():
         self.name = input('Ismingizni kirintg: ')
         self.surname = input("Familiyangizni kirintg: ")
         self.age = int(input("Yoshingizni kiritng: "))
-        self.telnumber = int(input("Telefon raqamingizni kirintg: "))
+        self.telnumber = input("Telefon raqamingizni kirintg: ")
         self.jinsi = input("[1] erkak\n[2] ayol\n")
-        if self.jinsi == '1' or 'erkak':
+        if self.jinsi == '1':
             self.jinsi = str("erkak")
         else:
             self.jinsi = str("ayol")
@@ -38,6 +51,9 @@ class User():
         print(f"Tabriklaymi!\nMuvaffaqiyatli ro'yhatdan o'tdingiz\n\nlogin:{self.login}\nparol:{self.parol}\n\n")
         time.sleep(2.4)
         os.system('clear')
+        cur.execute(f"""INSERT INTO Users(name, surname, age, telnumber, jinsi, login, parol)
+        VALUES('{self.name}', '{self.surname}',{self.age},'{self.telnumber}','{self.jinsi}','{self.login}','{self.parol}');""")
+        conn.commit()
         b.signIn()
 
 
